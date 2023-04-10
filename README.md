@@ -10,9 +10,13 @@ Para conferir o bot, clique aqui: https://t.me/benestic_weaver_bot
 Para utilizar esse app, você deve ter conhecimentos de automação em nuvem, Flask e hospedagem no Render, além de uma conta de desenvolvedor no Telegram, Spotify e Google.
 
 1. Baixe os arquivos:
+
   a) `app.py` - Com as definições para o site e o uso das funções do bot;
+  
   b) `bntc_weaver.py` - Módulo Python local para utilização das funções presentes no `app.py`
+  
   c) `requerements.txt` - Arquivo que informa o Render quais bibliotecas e módulos que precisaram ser instalados no ambiente virtual
+  
 2. Subir os arquivos, com as devidas alterações para o seu projeto, em um repositório público no GitHub;
 3. Criar um ambiente virtual Python no Render, utilizando os códigos desse repositório como base;
 4. Definir as variáveis de ambiente no Render, com as chaves de cada API que será utilizada no projeto;
@@ -41,4 +45,5 @@ Esse projeto foi desenvolvido como trabalho final para a disciplina Algoritmo de
 
 ## Contatos:
 Benestic Studio: benestic.studio@gmail.com
+
 Vitor Arthur (desenvolvedor do projeto): vitorarthur.profissional@gmail.com
