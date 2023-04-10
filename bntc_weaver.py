@@ -93,99 +93,99 @@ def bot_telegram(sheet1, sheet2, token=str, header_access=dict):
         query = user_text[9:].lower().strip()
         try:
             artist_info = get_search(query, type=['artist'], limit=1, header_access=header_access)
-        except: 
             bot_text = 'Não consegui encontrar nada. Tente novamente'
-            pass
-        artist_name = artist_info['artists']['items'][0]['name']
-        artist_url = artist_info['artists']['items'][0]['external_urls']['spotify']
-        artist_followers = artist_info['artists']['items'][0]['followers']['total']
-        artist_gen = artist_info['artists']['items'][0]['genres']
-        artist_pop = artist_info['artists']['items'][0]['popularity']
-        if type(artist_gen) == list:
-            artist_gen = ', '.join(artist_gen)
-        bot_text = f'''Você buscou por {artist_name}!
+            artist_name = artist_info['artists']['items'][0]['name']
+            artist_url = artist_info['artists']['items'][0]['external_urls']['spotify']
+            artist_followers = artist_info['artists']['items'][0]['followers']['total']
+            artist_gen = artist_info['artists']['items'][0]['genres']
+            artist_pop = artist_info['artists']['items'][0]['popularity']
+            if type(artist_gen) == list:
+                artist_gen = ', '.join(artist_gen)
+            bot_text = f'''Você buscou por {artist_name}!
 O link de seu perfil é: {artist_url}.
 {artist_name} tem {artist_followers} seguidores e tem {artist_pop}/100 de popularidade, de acordo com o Spotify.
 {artist_name} faz parte do gênero: {artist_gen}.'''
-    
+        except: 
+            bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
+
     elif '/faixas' in user_text:
         query = user_text[8:].lower().strip()
         try:
             track_info = get_search(query, type=['track'], limit=1, header_access=header_access)
-        except:
             bot_text = 'Não consegui encontrar nada. Tente novamente'
-            pass
-        track_name = track_info['tracks']['items'][0]['name']
-        track_artist_name = track_info['tracks']['items'][0]['artists'][0]['name']
-        track_url = track_info['tracks']['items'][0]['external_urls']['spotify']
-        track_album_name = track_info['tracks']['items'][0]['album']['name']
-        track_release_date = track_info['tracks']['items'][0]['album']['release_date']
-        track_number = track_info['tracks']['items'][0]['track_number']
-        track_pop = track_info['tracks']['items'][0]['popularity']
-        bot_text = f'''Você buscou por {track_name}!
+            track_name = track_info['tracks']['items'][0]['name']
+            track_artist_name = track_info['tracks']['items'][0]['artists'][0]['name']
+            track_url = track_info['tracks']['items'][0]['external_urls']['spotify']
+            track_album_name = track_info['tracks']['items'][0]['album']['name']
+            track_release_date = track_info['tracks']['items'][0]['album']['release_date']
+            track_number = track_info['tracks']['items'][0]['track_number']
+            track_pop = track_info['tracks']['items'][0]['popularity']
+            bot_text = f'''Você buscou por {track_name}!
 O link da música é: {track_url}
 A música pertence a {track_artist_name}, no álbum {track_album_name}, sendo a {track_number}ª música.
 Essa música foi publicada em {track_release_date}.
 A popularidade dessa música é de {track_pop}/100'''
+        except: 
+            bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
     
     elif '/album' in user_text:
         query = user_text[6:].lower().strip()
         try:
             album_info = get_search(query, type=['album'], limit=1, header_access=header_access)
-        except:
             bot_text = 'Não consegui encontrar nada. Tente novamente'
-            pass
-        album_name = album_info['albums']['items'][0]['name']
-        album_artist_name = album_info['albums']['items'][0]['artists'][0]['name']
-        album_url = album_info['albums']['items'][0]['external_urls']['spotify']
-        album_release_date = album_info['albums']['items'][0]['release_date']
-        album_total_number = album_info['albums']['items'][0]['total_tracks']
-        bot_text = f'''Você buscou por {album_name}!
+            album_name = album_info['albums']['items'][0]['name']
+            album_artist_name = album_info['albums']['items'][0]['artists'][0]['name']
+            album_url = album_info['albums']['items'][0]['external_urls']['spotify']
+            album_release_date = album_info['albums']['items'][0]['release_date']
+            album_total_number = album_info['albums']['items'][0]['total_tracks']
+            bot_text = f'''Você buscou por {album_name}!
 O link da música é: {album_url}
 O álbum pertence a {album_artist_name}.
 Esse álbum foi publicado em {album_release_date}.
 Tem o total de {album_total_number} faixas.'''
+        except: 
+            bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
 
     elif '/playlist' in user_text:
         query = user_text[10:].lower().strip()
         try:
             playlist_info = get_search(query, type=['playlist'], limit=1, header_access=header_access)
-        except:
             bot_text = 'Não consegui encontrar nada. Tente novamente'
-            pass
-        playlist_name = playlist_info['playlists']['items'][0]['name']
-        playlist_url = playlist_info['playlists']['items'][0]['external_urls']['spotify']
-        playlist_iscollab = playlist_info['playlists']['items'][0]['collaborative']
-        playlist_owner = playlist_info['playlists']['items'][0]['owner']['display_name']
-        if playlist_iscollab == False:
-            playlist_iscollab = 'não é colaborativa'
-        else:
-            playlist_iscollab = 'é colaborativa'
-        bot_text = f'''Encontrei uma playlist com o nome {playlist_name}.
+            playlist_name = playlist_info['playlists']['items'][0]['name']
+            playlist_url = playlist_info['playlists']['items'][0]['external_urls']['spotify']
+            playlist_iscollab = playlist_info['playlists']['items'][0]['collaborative']
+            playlist_owner = playlist_info['playlists']['items'][0]['owner']['display_name']
+            if playlist_iscollab == False:
+                playlist_iscollab = 'não é colaborativa'
+            else:
+                playlist_iscollab = 'é colaborativa'
+            bot_text = f'''Encontrei uma playlist com o nome {playlist_name}.
 O link da playlist é: {playlist_url}
 A playlist {playlist_iscollab}!
 O nome da pessoa que fez essa playlist é {playlist_owner}.        
         '''
+        except: 
+            bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
 
     elif user_text == '/novo':
         new_artist = []
         try:
             new_info = get_release(country='BR', limit=1, header_access=header_access)
-        except:
             bot_text = 'Não consegui encontrar nada. Tente novamente'
-            pass
-        new_type = new_info['albums']['items'][0]['album_type']
-        new_url = new_info['albums']['items'][0]['external_urls']['spotify']
-        new_name = new_info['albums']['items'][0]['name']
-        new_release = new_info['albums']['items'][0]['release_date']
-        for n in new_info['albums']['items'][0]['artists']:
-            new_artist.append(n['name'])
-        new_artist = ', '.join(new_artist)
-        bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
+            new_type = new_info['albums']['items'][0]['album_type']
+            new_url = new_info['albums']['items'][0]['external_urls']['spotify']
+            new_name = new_info['albums']['items'][0]['name']
+            new_release = new_info['albums']['items'][0]['release_date']
+            for n in new_info['albums']['items'][0]['artists']:
+                new_artist.append(n['name'])
+                new_artist = ', '.join(new_artist)
+            bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
 O link do lançamento é: {new_url}
 Esse lançamento é um {new_type}.
 Foi lançado em {new_release}
         '''
+        except: 
+            bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
 
     else:
         bot_text = 'Desculpe, eu não entendi. Por favor, responda de acordo com as instruções de cada função!'
@@ -194,9 +194,7 @@ Foi lançado em {new_release}
     bot_answer = requests.post(f"https://api.telegram.org./bot{token}/sendMessage", data=bot_men).json()
     
     # mandando dados para o Google Sheets
-    try:
-        sheet1.append_row(['user', user_id, user_name, user_text, datetime.now()])
-        sheet2.append_row(['bot', bot_text, datetime.now()])
-    except:
-        pass
+    sheet1.append_row(['user', user_id, user_name, user_text, datetime.now()])
+    sheet2.append_row(['bot', bot_text, datetime.now()])
+
     return bot_answer
