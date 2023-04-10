@@ -86,7 +86,7 @@ def bot_telegram(token=str, header_access=dict):
         bot_text = f'''Você buscou por {artist_name}!
     O link de seu perfil é: {artist_url}.
     {artist_name} tem {artist_followers} seguidores e tem {artist_pop}/100 de popularidade, de acordo com o Spotify.
-    {artist_name} faz parte do gênero: {artist_gen[0]}.'''
+    {artist_name} faz parte do gênero: {artist_gen}.'''
     
     elif '/faixas' in user_text:
         query = user_text[8:]
