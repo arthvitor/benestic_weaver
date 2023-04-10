@@ -27,8 +27,13 @@ app = Flask(__name__)
 # testando dados do spotify 
 @app.route('/')
 def index():
-    img = '<img src="benestic_weaver.png">'
-    return img + 'Boas vindas ao Benestic Weaver'
+    img = '<img src="https://user-images.githubusercontent.com/61673650/230957503-f96a2302-9e58-4347-aab8-a0ec101aeefa.png">'
+    return img + '''Boas vindas ao Benestic Weaver.
+Esse site é onde rodam todas as coisas necessárias para que o Weaver funcione. 
+Caso queira entender como ele funciona, entre nesse repositório do <a href='https://github.com/arthvitor/benestic_weaver'>GitHub</a>
+Quer testar o Weaver? Clique <a href='https://t.me/benestic_weaver_bot'>aqui</a> para ir para o Telegram!
+
+© Benestic Studio | Versão 0.0.1'''
 
 @app.route('/weaver-bot', methods=["POST"])
 def weaver_bot():
