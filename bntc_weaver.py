@@ -169,23 +169,19 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
 
     elif user_text == '/novo':
         new_artist = []
-        try:
-            new_info = get_release(country='BR', limit=1, header_access=header_access)
-            bot_text = 'Não consegui encontrar nada. Tente novamente'
-            new_type = new_info['albums']['items'][0]['album_type']
-            new_url = new_info['albums']['items'][0]['external_urls']['spotify']
-            new_name = new_info['albums']['items'][0]['name']
-            new_release = new_info['albums']['items'][0]['release_date']
-            for n in new_info['albums']['items'][0]['artists']:
-                new_artist.append(n['name'])
-                new_artist = ', '.join(new_artist)
-            bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
+        new_info = get_release(country='BR', limit=1, header_access=header_access)
+        bot_text = 'Não consegui encontrar nada. Tente novamente'
+        new_type = new_info['albums']['items'][0]['album_type']
+        new_url = new_info['albums']['items'][0]['external_urls']['spotify']
+        new_name = new_info['albums']['items'][0]['name']
+        new_release = new_info['albums']['items'][0]['release_date']
+        for n in new_info['albums']['items'][0]['artists']:
+            new_artist.append(n['name'])
+            new_artist = ', '.join(new_artist)
+        bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
 O link do lançamento é: {new_url}
 Esse lançamento é um {new_type}.
-Foi lançado em {new_release}
-        '''
-        except: 
-            bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
+Foi lançado em {new_release}'''
 
     else:
         bot_text = 'Desculpe, eu não entendi. Por favor, responda de acordo com as instruções de cada função!'
