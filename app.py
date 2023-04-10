@@ -29,11 +29,11 @@ app = Flask(__name__)
 def index():
     img = '<img src="https://user-images.githubusercontent.com/61673650/230962148-2362cb09-76fe-435c-9be5-953c265ee279.png">'
     return img + '''
-Boas vindas ao Benestic Weaver.
-Esse site é onde rodam todas as coisas necessárias para que o Weaver funcione. 
-Caso queira entender como ele funciona, entre nesse repositório do <a href='https://github.com/arthvitor/benestic_weaver'>GitHub</a>
-Quer testar o Weaver? Clique <a href='https://t.me/benestic_weaver_bot'>aqui</a> para ir para o Telegram!
-
+<br><h1>Boas vindas ao Benestic Weaver.</h1><br>
+Esse site é onde rodam todas as coisas necessárias para que o Weaver funcione.<br>
+Caso queira entender como ele funciona, entre nesse repositório do <a href='https://github.com/arthvitor/benestic_weaver'>GitHub</a>.<br>
+Quer testar o Weaver? Clique <a href='https://t.me/benestic_weaver_bot'>aqui</a> para ir para o Telegram!<br>
+<br>
 © Benestic Studio | Versão 0.0.1'''
 
 @app.route('/weaver-bot', methods=["POST"])
