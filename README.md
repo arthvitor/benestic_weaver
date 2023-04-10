@@ -2,7 +2,7 @@
 
 # Benestic Weaver
 Boas vindas ao Benestic Weaver, um bot do Telegram que transmite informações da API do Spotify. Essa automação é feita em Flask e hospedada no render.
-Para conferir a página do bot, clique nesse linkkk: https://benestic-weaver.onrender.com
+Para conferir a página do bot, clique nesse link: https://benestic-weaver.onrender.com
 
 ## Primeiros Passos
 Para utilizar esse app, você deve ter conhecimentos de automação em núvem, Flask e hospedagem no Render, além de uma conta de desenvolvedor no Telegram, Spotify e Google.
