@@ -194,7 +194,8 @@ Foi lançado em {new_release}
     bot_answer = requests.post(f"https://api.telegram.org./bot{token}/sendMessage", data=bot_men).json()
     
     # mandando dados para o Google Sheets
-    sheet1.append_row(['user', user_id, user_name, user_text, datetime.now()])
-    sheet2.append_row(['bot', bot_text, datetime.now()])
+    date = datetime.now()
+    sheet1.append_row(['user', user_id, user_name, user_text, date])
+    sheet2.append_row(['bot', bot_text, date])
 
     return bot_answer
