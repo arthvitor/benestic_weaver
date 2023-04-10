@@ -95,6 +95,7 @@ def bot_telegram(sheet1, sheet2, token=str, header_access=dict):
             artist_info = get_search(query, type=['artist'], limit=1, header_access=header_access)
         except: 
             bot_text = 'Não consegui encontrar nada. Tente novamente'
+            pass
         artist_name = artist_info['artists']['items'][0]['name']
         artist_url = artist_info['artists']['items'][0]['external_urls']['spotify']
         artist_followers = artist_info['artists']['items'][0]['followers']['total']
@@ -113,6 +114,7 @@ O link de seu perfil é: {artist_url}.
             track_info = get_search(query, type=['track'], limit=1, header_access=header_access)
         except:
             bot_text = 'Não consegui encontrar nada. Tente novamente'
+            pass
         track_name = track_info['tracks']['items'][0]['name']
         track_artist_name = track_info['tracks']['items'][0]['artists'][0]['name']
         track_url = track_info['tracks']['items'][0]['external_urls']['spotify']
@@ -132,6 +134,7 @@ A popularidade dessa música é de {track_pop}/100'''
             album_info = get_search(query, type=['album'], limit=1, header_access=header_access)
         except:
             bot_text = 'Não consegui encontrar nada. Tente novamente'
+            pass
         album_name = album_info['albums']['items'][0]['name']
         album_artist_name = album_info['albums']['items'][0]['artists'][0]['name']
         album_url = album_info['albums']['items'][0]['external_urls']['spotify']
@@ -149,6 +152,7 @@ Tem o total de {album_total_number} faixas.'''
             playlist_info = get_search(query, type=['playlist'], limit=1, header_access=header_access)
         except:
             bot_text = 'Não consegui encontrar nada. Tente novamente'
+            pass
         playlist_name = playlist_info['playlists']['items'][0]['name']
         playlist_url = playlist_info['playlists']['items'][0]['external_urls']['spotify']
         playlist_iscollab = playlist_info['playlists']['items'][0]['collaborative']
@@ -169,6 +173,7 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
             new_info = get_release(country='BR', limit=1, header_access=header_access)
         except:
             bot_text = 'Não consegui encontrar nada. Tente novamente'
+            pass
         new_type = new_info['albums']['items'][0]['album_type']
         new_url = new_info['albums']['items'][0]['external_urls']['spotify']
         new_name = new_info['albums']['items'][0]['name']
