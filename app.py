@@ -27,7 +27,7 @@ app = Flask(__name__)
 # testando dados do spotify 
 @app.route('/')
 def index():
-    img = '<img src="https://user-images.githubusercontent.com/61673650/230957503-f96a2302-9e58-4347-aab8-a0ec101aeefa.png">'
+    img = '<img src="https://user-images.githubusercontent.com/61673650/230962148-2362cb09-76fe-435c-9be5-953c265ee279.png">'
     return img + '''Boas vindas ao Benestic Weaver.
 Esse site é onde rodam todas as coisas necessárias para que o Weaver funcione. 
 Caso queira entender como ele funciona, entre nesse repositório do <a href='https://github.com/arthvitor/benestic_weaver'>GitHub</a>
