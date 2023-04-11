@@ -175,7 +175,7 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
         new_url = new_info['albums']['items'][0]['external_urls']['spotify']
         new_name = new_info['albums']['items'][0]['name']
         new_release = new_info['albums']['items'][0]['release_date']
-        if type(new_info['albums']['items'][0]['artists']) == list:
+        if len(new_info['albums']['items'][0]['artists']) >= 2:
             for n in new_info['albums']['items'][0]['artists']:
                 new_artist.append(n['name'])
                 new_artist = ', '.join(new_artist)
