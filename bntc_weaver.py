@@ -175,14 +175,21 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
         new_url = new_info['albums']['items'][0]['external_urls']['spotify']
         new_name = new_info['albums']['items'][0]['name']
         new_release = new_info['albums']['items'][0]['release_date']
-        for n in new_info['albums']['items'][0]['artists']:
-            new_artist.append(n['name'])
-            new_artist = ', '.join(new_artist)
-        bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
+        if type(new_info['albums']['items'][0]['artists']) == list:
+            for n in new_info['albums']['items'][0]['artists']:
+                new_artist.append(n['name'])
+                new_artist = ', '.join(new_artist)
+            bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
 O link do lançamento é: {new_url}
 Esse lançamento é um {new_type}.
 Foi lançado em {new_release}'''
-
+        else:
+            new_artist = ['albums']['items'][0]['artists'][0]['name']
+            bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
+O link do lançamento é: {new_url}
+Esse lançamento é um {new_type}.
+Foi lançado em {new_release}'''
+            
     else:
         bot_text = 'Desculpe, eu não entendi. Por favor, responda de acordo com as instruções de cada função!'
     
