@@ -175,7 +175,7 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
         new_url = new_info['albums']['items'][0]['external_urls']['spotify']
         new_name = new_info['albums']['items'][0]['name']
         new_release = new_info['albums']['items'][0]['release_date']
-        new_artist = ['albums']['items'][0]['artists'][0]['name']
+        new_artist = new_info['albums']['items'][0]['artists'][0]['name']
         bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
 O link do lançamento é: {new_url}
 Esse lançamento é um {new_type}.
