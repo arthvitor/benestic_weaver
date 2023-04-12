@@ -40,9 +40,6 @@ Ainda será desenvolvido novas funções com o decorrer do tempo para deixar o b
 ## O que é Benestic?
 Benestic é um studio de criatividade e inovação, fundado por três comunicadores para trazer novos ares a área de assessoria de comunicação e análise de dados, com atendimento mais humano e aceleração de carreiras. Para saber mais sobre a Benestic Studio, entre em nosso instagram: https://www.instagram.com/benestic.studio/
 
-## Finalidade desse projeto
-Esse projeto foi desenvolvido como trabalho final para a disciplina Algoritmo de Automação, da pós-graduação em Jornalismo de Dados, Automação e Data Storytelling, do Insper. Também é um produto da Benestic Studio. 
-
 ## Contatos:
 Benestic Studio: benestic.studio@gmail.com
 
