@@ -273,9 +273,9 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
         new_release = new_info['albums']['items'][0]['release_date']
         new_image_url = new_info['albums']['items'][0]['images'][0]['url']
         img = make_music_image(url=new_image_url)
+        img.save('novo.png', format=None)
         with open('novo.png', 'rb') as im:
             content = im.read()
-        imagem = open('novo.png', 'r')
         bot_img = {"chat_id": user_id, 'photo': content}
         requests.post(f"https://api.telegram.org./bot{token}/sendPhoto", data=bot_img).json()
         bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
