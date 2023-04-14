@@ -176,7 +176,7 @@ def bot_telegram(sheet1, sheet2, token=str, header_access=dict):
         bot_text = f'''Olá, {user_name}, tudo bem? Boas vindas ao Weaver. O que você gostaria de fazer?
 /busca: Busca por algo específico no Spotify
 /novo: Recebe informações sobre o último lançamento de faixa no Brasil
-/sugestao_musica: (Coloque aqui, em ordem e entre vírgulas, um artista que você gosta e um gênero de música que você curte)'''
+/sugestao_musica: (Coloque aqui um artista que você gosta e um gênero de música que você curte. Ex: /sugestao_musica, kali uchis, pop)'''
     
     elif user_text == '/busca':
         bot_text = '''Você pode buscar por diversas coisas no spotify. Aqui está uma lista de comandos que você pode mandar para mim:
@@ -285,8 +285,8 @@ Foi lançado em {new_release}'''
 
     elif '/sugestao_musica' in user_mens:
         user_input = user_mens.split(',').strip()
-        artist = user_input[0]
-        genres = user_input[1]
+        artist = user_input[1]
+        genres = user_input[2]
         data = recommend_noti(header_access, artist, genres)
         artist_name = data['artists'][0]['name']
         music_name = data['name']
