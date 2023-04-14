@@ -282,8 +282,8 @@ Foi lançado em {new_release}'''
 
     elif '/sugestao_musica' in user_text:
         user_input = user_text.split(',')
-        artist = user_input[1]
-        genres = user_input[2]
+        artist = user_input[1].strip()
+        genres = user_input[2].strip()
         data = recommend_noti(header_access, artist, genres)
         artist_name = data['artists'][0]['name']
         music_name = data['name']
