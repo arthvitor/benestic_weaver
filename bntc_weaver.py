@@ -182,6 +182,7 @@ def bot_telegram(sheet1, sheet2, token=str, header_access=dict):
 /album: (coloque aqui o álbum que você quer saber mais sobre)
 /playlist: (coloque aqui a playlist que você quer buscar)'''
         
+        
     elif '/artistas' in user_text:
         query = user_text[9:].lower().strip()
         try:
@@ -200,6 +201,7 @@ O link de seu perfil é: {artist_url}.
 {artist_name} faz parte do gênero: {artist_gen}.'''
         except: 
             bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
+
 
     elif '/faixas' in user_text:
         query = user_text[8:].lower().strip()
@@ -221,6 +223,7 @@ A popularidade dessa música é de {track_pop}/100'''
         except: 
             bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
     
+
     elif '/album' in user_text:
         query = user_text[6:].lower().strip()
         try:
@@ -238,6 +241,7 @@ Esse álbum foi publicado em {album_release_date}.
 Tem o total de {album_total_number} faixas.'''
         except: 
             bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
+
 
     elif '/playlist' in user_text:
         query = user_text[10:].lower().strip()
@@ -260,45 +264,52 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
         except: 
             bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
 
+
     elif user_text == '/novo':
-        new_info = get_release(country='BR', limit=1, header_access=header_access)
-        new_artist = new_info['albums']['items'][0]['artists'][0]['name']
-        bot_text = 'Não consegui encontrar nada. Tente novamente'
-        new_type = new_info['albums']['items'][0]['album_type']
-        new_url = new_info['albums']['items'][0]['external_urls']['spotify']
-        new_name = new_info['albums']['items'][0]['name']
-        new_release = new_info['albums']['items'][0]['release_date']
-        new_image_url = new_info['albums']['items'][0]['images'][0]['url']
-        img = make_music_image(url=new_image_url)
-        img.save('novo.png', format=None)
-        with open('novo.png', 'rb') as im:
-            content = im.read()
-        bot_img = {"chat_id": user_id, 'photo': 'novo.png'}
-        requests.post(f"https://api.telegram.org./bot{token}/sendPhoto", data=bot_img).json()
-        bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
+        try:
+            new_info = get_release(country='BR', limit=1, header_access=header_access)
+            new_artist = new_info['albums']['items'][0]['artists'][0]['name']
+            bot_text = 'Não consegui encontrar nada. Tente novamente'
+            new_type = new_info['albums']['items'][0]['album_type']
+            new_url = new_info['albums']['items'][0]['external_urls']['spotify']
+            new_name = new_info['albums']['items'][0]['name']
+            new_release = new_info['albums']['items'][0]['release_date']
+            new_image_url = new_info['albums']['items'][0]['images'][0]['url']
+            img = make_music_image(url=new_image_url)
+            img.save('novo.png', format=None)
+            with open('novo.png', 'rb') as im:
+                content = im.read()
+            bot_img = {"chat_id": user_id, 'photo': 'novo.png'}
+            requests.post(f"https://api.telegram.org./bot{token}/sendPhoto", data=bot_img).json()
+            bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
 O link do lançamento é: {new_url}
 Esse lançamento é um {new_type}.
 Foi lançado em {new_release}'''
+        except: 
+            bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
 
     elif '/sugestao_musica' in user_text:
-        user_input = user_text.split(',')
-        artist = user_input[1].strip()
-        genres = user_input[2].strip()
-        data = recommend_noti(header_access, artist, genres)
-        artist_name = data['artists'][0]['name']
-        music_name = data['name']
-        image_url = data['images'][0]['url']
-        music_url = data['tracks']['items'][0]['external_urls']['spotify']
-        img = make_music_image(url=image_url)
-        bot_text = f'''A sugestão de música que você pediu chegou!
+        try:
+            user_input = user_text.split(',')
+            artist = user_input[1].strip()
+            genres = user_input[2].strip()
+            data = recommend_noti(header_access, artist, genres)
+            artist_name = data['artists'][0]['name']
+            music_name = data['name']
+            image_url = data['images'][0]['url']
+            music_url = data['tracks']['items'][0]['external_urls']['spotify']
+            img = make_music_image(url=image_url)
+            bot_text = f'''A sugestão de música que você pediu chegou!
 Para você que gosta de {artist} e {genres}, recomendo {music_name}, de {artist_name}!
 Acesse a música aqui: {music_url}        
         '''
-        img.save('novo.png', format=None)
-        with open('novo.png', 'rb') as im:
-            content = im.read()
-        bot_img = {"chat_id": user_id, 'photo': 'novo.png'}
-        requests.post(f"https://api.telegram.org./bot{token}/sendPhoto", data=bot_img).json()
+            img.save('novo.png', format=None)
+            with open('novo.png', 'rb') as im:
+                content = im.read()
+            bot_img = {"chat_id": user_id, 'photo': 'novo.png'}
+            requests.post(f"https://api.telegram.org./bot{token}/sendPhoto", data=bot_img).json()
+        except: 
+            bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
 
     else:
         bot_text = 'Desculpe, eu não entendi. Por favor, responda de acordo com as instruções de cada função!'
