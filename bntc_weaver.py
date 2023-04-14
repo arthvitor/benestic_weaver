@@ -5,10 +5,10 @@ __version__ = '1.0.0'
 import requests
 import gspread
 from flask import request
-from datetime import datetime
+from datetime import datetime, date
 from PIL import Image, ImageDraw, ImageFont
 from urllib.request import urlopen
-
+date = str(date.today())
 
 # FUNÇÕES PARA RECEBER DADOS DO SPOTIFY
 # função para receber o token de acesso da API
@@ -106,7 +106,6 @@ def make_release_image(url=str):
     im1 = Image.open('lancamento.png').convert('RGBA')
     im2 = Image.open(urlopen(url)).convert('RGBA')
     n_im = Image.alpha_composite(im2, im1)
-    date = str(datetime.date.today())
 
     #Gerando texto da imagem
     txt = Image.new('RGBA', n_im.size, (255, 255, 255, 0))
@@ -138,7 +137,6 @@ def make_music_image(url=str):
     im1 = Image.open('musica.png').convert('RGBA')
     im2 = Image.open(urlopen(url)).convert('RGBA')
     n_im = Image.alpha_composite(im2, im1)
-    date = str(datetime.date.today())
 
     #Gerando texto da imagem
     txt = Image.new('RGBA', n_im.size, (255, 255, 255, 0))
@@ -273,7 +271,7 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
         new_url = new_info['albums']['items'][0]['external_urls']['spotify']
         new_name = new_info['albums']['items'][0]['name']
         new_release = new_info['albums']['items'][0]['release_date']
-        new_image_url = new_info['albums']['items'][0]['images'][0]
+        new_image_url = new_info['albums']['items'][0]['images'][0]['url']
         img = make_music_image(url=new_image_url)
         img.save('novo.png', format=None)
         imagem = open('novo.png', 'r')
@@ -291,7 +289,6 @@ Foi lançado em {new_release}'''
         user_input = user_mens.split(',').strip()
         artist = user_input[0]
         genres = user_input[1]
-        sugest = recommend_noti(header_access, [artist], [genres])
         data = recommend_noti(header_access, artist, genres)
         artist_name = data['artists'][0]['name']
         music_name = data['name']
