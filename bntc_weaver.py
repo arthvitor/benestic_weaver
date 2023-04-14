@@ -275,10 +275,12 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
         new_release = new_info['albums']['items'][0]['release_date']
         new_image_url = new_info['albums']['items'][0]['images'][0]
         img = make_music_image(url=new_image_url)
+        img.save('novo.png', format=None)
+        imagem = open('novo.png', 'r')
         for n in new_info['albums']['items'][0]['artists']:
             new_artist.append(n['name'])
             new_artist = ', '.join(new_artist)
-        bot_img = {"chat_id": user_id, 'photo': img}
+        bot_img = {"chat_id": user_id, 'photo': imagem}
         requests.post(f"https://api.telegram.org./bot{token}/sendPhoto", data=bot_img).json()
         bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
 O link do lançamento é: {new_url}
@@ -300,7 +302,9 @@ Foi lançado em {new_release}'''
 Para você que gosta de {artist} e {genres}, recomendo {music_name}, de {artist_name}!
 Acesse a música aqui: {music_url}        
         '''
-        bot_img = {"chat_id": user_id, 'photo': img}
+        img.save('novo.png', format=None)
+        imagem = open('novo.png', 'r')
+        bot_img = {"chat_id": user_id, 'photo': imagem}
         requests.post(f"https://api.telegram.org./bot{token}/sendPhoto", data=bot_img).json()
 
     else:
