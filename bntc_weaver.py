@@ -283,8 +283,8 @@ O link do lançamento é: {new_url}
 Esse lançamento é um {new_type}.
 Foi lançado em {new_release}'''
 
-    elif '/sugestao_musica' in user_mens:
-        user_input = user_mens.split(',').strip()
+    elif '/sugestao_musica' in user_text:
+        user_input = user_text.split(',').strip()
         artist = user_input[1]
         genres = user_input[2]
         data = recommend_noti(header_access, artist, genres)
