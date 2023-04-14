@@ -77,10 +77,7 @@ def recommend_noti(header_access, seed_artist, seed_genres):
     artist_id = artist['artists']['items'][0]['id']
 
     # query da requsição
-    query_data = {
-    'limit': 100,
-    'seed_artist': [artist_id],
-    'seed_genres': [seed_genres]}
+    query_data = {'limit': 100, 'seed_artist': [artist_id], 'seed_genres': [seed_genres]}
     recommend_not = requests.get(f'https://api.spotify.com/v1/recommendations', headers=header_access, params=query_data).json()
 
     # adicionando id de singles ao acumulador
