@@ -264,8 +264,8 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
             bot_text = f'''Não consegui encontrar um resultado. Tente novamente!'''
 
     elif user_text == '/novo':
-        new_artist = []
         new_info = get_release(country='BR', limit=1, header_access=header_access)
+        new_artist = new_info['albums']['items'][0]['artists'][0]['name']
         bot_text = 'Não consegui encontrar nada. Tente novamente'
         new_type = new_info['albums']['items'][0]['album_type']
         new_url = new_info['albums']['items'][0]['external_urls']['spotify']
@@ -275,9 +275,6 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
         img = make_music_image(url=new_image_url)
         img.save('novo.png', format=None)
         imagem = open('novo.png', 'r')
-        for n in new_info['albums']['items'][0]['artists']:
-            new_artist.append(n['name'])
-            new_artist = ', '.join(new_artist)
         bot_img = {"chat_id": user_id, 'photo': imagem}
         requests.post(f"https://api.telegram.org./bot{token}/sendPhoto", data=bot_img).json()
         bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
