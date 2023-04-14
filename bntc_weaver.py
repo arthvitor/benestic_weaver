@@ -273,7 +273,7 @@ O nome da pessoa que fez essa playlist é {playlist_owner}.
         img.save('novo.png', format=None)
         with open('novo.png', 'rb') as im:
             content = im.read()
-        bot_img = {"chat_id": user_id, 'photo': content}
+        bot_img = {"chat_id": user_id, 'photo': 'novo.png'}
         requests.post(f"https://api.telegram.org./bot{token}/sendPhoto", data=bot_img).json()
         bot_text = f'''O mais novo lançamento no Brasil é {new_name}, de {new_artist}.
 O link do lançamento é: {new_url}
@@ -297,7 +297,7 @@ Acesse a música aqui: {music_url}
         img.save('novo.png', format=None)
         with open('novo.png', 'rb') as im:
             content = im.read()
-        bot_img = {"chat_id": user_id, 'photo': content}
+        bot_img = {"chat_id": user_id, 'photo': 'novo.png'}
         requests.post(f"https://api.telegram.org./bot{token}/sendPhoto", data=bot_img).json()
 
     else:
